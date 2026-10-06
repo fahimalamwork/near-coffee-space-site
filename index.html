@@ -4,803 +4,328 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Near Coffee — Your Space</title>
+<meta name="description" content="More than a coffee shop — Near Coffee is a collection of thoughtfully designed spaces where people come to work, unwind, and enjoy life one cup at a time.">
+<meta name="theme-color" content="#16110d">
+<link rel="canonical" href="https://www.nearcoffee.space/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Near Coffee">
+<meta property="og:title" content="Near Coffee — Your Space">
+<meta property="og:description" content="A place to gather, breathe, &amp; connect. A collection of thoughtfully designed coffee spaces — built for the people, shaped by the neighborhood.">
+<meta property="og:url" content="https://www.nearcoffee.space/">
+<meta property="og:image" content="https://www.nearcoffee.space/images/hero.jpg">
+<meta property="og:image:width" content="1050">
+<meta property="og:image:height" content="1400">
+<meta property="og:image:alt" content="The curved white counter and espresso bar at Near Coffee">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="images/logo.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-/* ═══════════════════════════════════════════
-   TOKENS & RESET
-═══════════════════════════════════════════ */
-:root {
-  --espresso:   #1c1410;
-  --dark-brown:#2a1f18;
-  --umber:     #3d2e24;
-  --latte:     #c4a882;
-  --cream:     #f0e8dc;
-  --cream-off: #e4d9cb;
-  --warm-white:#faf7f3;
-  --text-mute: rgba(60,40,28,.5);
-  --text-body: rgba(60,40,28,.78);
-  --gold:      #b8935a;
-  --gold-light:rgba(184,147,90,.18);
-  --radius:    6px;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
-}
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--warm-white);
-  color: var(--espresso);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-a { text-decoration:none; color:inherit; }
-
-/* Grain overlay */
-body::after {
-  content:'';
-  position:fixed; inset:0; z-index:999;
-  pointer-events:none; opacity:.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* ═══════════════════════════════════════════
-   NAV
-═══════════════════════════════════════════ */
-nav {
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  display:flex; align-items:center; justify-content:space-between;
-  padding: 20px 48px;
-  transition: all .4s cubic-bezier(.4,0,.2,1);
-}
-nav.scrolled {
-  background: rgba(250,247,243,.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  padding: 12px 48px;
-  box-shadow: 0 1px 0 rgba(184,147,90,.15);
-}
-.nav-logo img {
-  height: 42px;
-  width: auto;
-  transition: filter .3s;
-}
-nav:not(.scrolled) .nav-logo img {
-  filter: brightness(0) invert(1);
-}
-nav.scrolled .nav-logo img {
-  filter: none;
-}
-.nav-links { display:flex; gap:32px; list-style:none; align-items:center; }
-.nav-links a {
-  font-size:13px; font-weight:400;
-  color: rgba(255,255,255,.7);
-  letter-spacing:.3px; position:relative;
-  transition: color .3s;
-}
-nav.scrolled .nav-links a { color: var(--text-body); }
-.nav-links a::after {
-  content:''; position:absolute; bottom:-4px; left:0;
-  width:0; height:1.5px; background:var(--gold);
-  transition: width .35s cubic-bezier(.4,0,.2,1);
-}
-.nav-links a:hover { color: var(--gold); }
-.nav-links a:hover::after { width:100%; }
-.nav-cta {
-  font-size:12px; font-weight:500; letter-spacing:1px;
-  text-transform:uppercase; padding:10px 22px;
-  border:1.5px solid rgba(255,255,255,.6); border-radius:var(--radius);
-  color: rgba(255,255,255,.85);
-  transition: background .3s, color .3s, border-color .3s;
-}
-nav.scrolled .nav-cta { border-color:var(--espresso); color:var(--espresso); }
-.nav-cta:hover { background:var(--gold); color:#fff; border-color:var(--gold); }
-
-/* ═══════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════ */
-.hero {
-  position:relative;
-  min-height:100vh;
-  display:flex; flex-direction:column;
-  justify-content:flex-end;
-  padding: 0 48px 110px;
-  overflow:hidden;
-}
-.hero-bg {
-  position:absolute; inset:0;
-  background: url(images/hero.jpg) center/cover no-repeat;
-  transition: transform 8s ease-out;
-}
-.hero:hover .hero-bg { transform: scale(1.03); }
-.hero-overlay {
-  position:absolute; inset:0;
-  background: linear-gradient(
-    to bottom,
-    rgba(28,20,16,.3) 0%,
-    rgba(28,20,16,.15) 35%,
-    rgba(28,20,16,.55) 70%,
-    rgba(28,20,16,.85) 100%
-  );
-}
-.hero-content { position:relative; z-index:2; max-width:700px; }
-
-.hero-tag {
-  display:inline-flex; align-items:center; gap:10px;
-  font-size:11px; font-weight:500;
-  letter-spacing:2.2px; text-transform:uppercase;
-  color:var(--latte); margin-bottom:32px;
-  opacity:0; animation: revealUp .9s .2s forwards;
-}
-.hero-tag::before { content:''; width:28px; height:1px; background:var(--gold); }
-
-.hero-title {
-  font-family:var(--font-display);
-  font-size: clamp(50px, 8vw, 92px);
-  font-weight:400; line-height:1.06;
-  color:var(--cream); letter-spacing:-1.5px;
-  opacity:0; animation: revealUp 1s .4s forwards;
-}
-.hero-title em { font-style:italic; color:var(--latte); }
-
-.hero-sub {
-  margin-top:28px; max-width:440px;
-  font-size:15px; font-weight:300; line-height:1.85;
-  color:rgba(240,232,220,.6);
-  opacity:0; animation: revealUp .9s .65s forwards;
-}
-.hero-actions {
-  margin-top:44px; display:flex; gap:16px;
-  flex-wrap:wrap; align-items:center;
-  opacity:0; animation: revealUp .9s .85s forwards;
-}
-.btn-primary {
-  display:inline-flex; align-items:center; gap:8px;
-  padding:14px 30px; background:var(--gold); color:#fff;
-  font-size:13px; font-weight:500; letter-spacing:.6px;
-  border-radius:var(--radius); border:none; cursor:pointer;
-  transition: background .3s, transform .2s, box-shadow .3s;
-  box-shadow: 0 4px 24px rgba(184,147,90,.3);
-}
-.btn-primary:hover { background:#a07e48; transform:translateY(-1px); box-shadow:0 6px 32px rgba(184,147,90,.4); }
-.btn-primary svg { transition:transform .3s; }
-.btn-primary:hover svg { transform:translateX(3px); }
-.btn-ghost {
-  display:inline-flex; align-items:center; gap:6px;
-  padding:14px 4px; font-size:13px; font-weight:400;
-  color:rgba(240,232,220,.6); border:none; background:none;
-  cursor:pointer; transition:color .3s; letter-spacing:.3px;
-}
-.btn-ghost:hover { color:var(--latte); }
-
-.hero-scroll {
-  position:absolute; bottom:36px; left:48px; z-index:2;
-  display:flex; align-items:center; gap:10px;
-  font-size:10px; letter-spacing:2.5px; text-transform:uppercase;
-  color:rgba(240,232,220,.3);
-  opacity:0; animation: revealUp .8s 1.2s forwards;
-}
-.hero-scroll-line {
-  width:1px; height:36px; background:rgba(240,232,220,.2);
-  position:relative; overflow:hidden;
-}
-.hero-scroll-line::after {
-  content:''; position:absolute; top:-100%; left:0;
-  width:100%; height:100%; background:var(--gold);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-@keyframes scrollPulse { 0%{top:-100%} 100%{top:100%} }
-@keyframes revealUp {
-  from { opacity:0; transform:translateY(28px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-
-/* ═══════════════════════════════════════════
-   MARQUEE
-═══════════════════════════════════════════ */
-.marquee-strip {
-  background:var(--dark-brown); padding:18px 0;
-  overflow:hidden; white-space:nowrap;
-}
-.marquee-track {
-  display:inline-flex;
-  animation: marquee 28s linear infinite;
-}
-.marquee-track span {
-  display:inline-flex; align-items:center; gap:28px;
-  font-family:var(--font-display); font-size:15px; font-style:italic;
-  color:rgba(196,168,130,.45); padding-right:80px; white-space:nowrap;
-}
-.marquee-track .dot { width:4px; height:4px; border-radius:50%; background:var(--gold); flex-shrink:0; }
-@keyframes marquee { to { transform:translateX(-50%); } }
-
-/* ═══════════════════════════════════════════
-   SECTION COMMONS
-═══════════════════════════════════════════ */
-section { padding:120px 48px; }
-.sec-label {
-  display:inline-flex; align-items:center; gap:10px;
-  font-size:10.5px; font-weight:500;
-  letter-spacing:2.5px; text-transform:uppercase; color:var(--gold);
-  margin-bottom:16px;
-}
-.sec-label::before { content:''; width:20px; height:1px; background:var(--gold); }
-.sec-title {
-  font-family:var(--font-display);
-  font-size:clamp(34px, 4.5vw, 50px); font-weight:400;
-  line-height:1.2; color:var(--espresso); letter-spacing:-.8px;
-  max-width:540px;
-}
-.sec-title em { font-style:italic; color:var(--gold); }
-.sec-desc {
-  font-size:15px; font-weight:300; line-height:1.85;
-  color:var(--text-body); max-width:460px; margin-top:20px;
-}
-
-/* Reveal */
-.reveal {
-  opacity:0; transform:translateY(36px);
-  transition: opacity .85s cubic-bezier(.4,0,.2,1), transform .85s cubic-bezier(.4,0,.2,1);
-}
-.reveal.visible { opacity:1; transform:translateY(0); }
-.reveal-d1 { transition-delay:.12s; }
-.reveal-d2 { transition-delay:.24s; }
-.reveal-d3 { transition-delay:.36s; }
-
-/* ═══════════════════════════════════════════
-   ABOUT
-═══════════════════════════════════════════ */
-.about-wrap { max-width:1200px; margin:0 auto; padding:140px 48px; }
-.about {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:80px; align-items:center;
-}
-.about-visual {
-  position:relative; border-radius:var(--radius); overflow:hidden;
-  aspect-ratio:4/5;
-}
-.about-visual img {
-  width:100%; height:100%; object-fit:cover;
-  transition: transform 6s ease;
-}
-.about-wrap:hover .about-visual img { transform:scale(1.04); }
-
-.about-tag {
-  position:absolute; top:24px; right:-12px;
-  background:#fff; padding:14px 20px;
-  border-radius:var(--radius);
-  box-shadow:0 8px 40px rgba(0,0,0,.08);
-  font-size:11px; font-weight:500; color:var(--espresso);
-  letter-spacing:.5px; white-space:nowrap; z-index:2;
-}
-.about-tag span { color:var(--gold); font-weight:600; }
-
-.about-pillars { display:flex; gap:32px; margin-top:40px; flex-wrap:wrap; }
-.pillar { display:flex; flex-direction:column; gap:6px; flex:1; min-width:110px; }
-.pillar-num { font-size:10px; color:var(--gold); font-weight:500; letter-spacing:1.5px; }
-.pillar-name { font-family:var(--font-display); font-size:18px; font-weight:500; color:var(--espresso); }
-.pillar-desc { font-size:12px; color:var(--text-mute); line-height:1.6; }
-
-/* ═══════════════════════════════════════════
-   SPACES
-═══════════════════════════════════════════ */
-.spaces-section { background:var(--cream); }
-.spaces-inner { max-width:1140px; margin:0 auto; }
-.spaces-header {
-  display:flex; justify-content:space-between; align-items:flex-end;
-  flex-wrap:wrap; gap:24px; margin-bottom:72px;
-}
-.spaces-grid {
-  display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
-}
-.space-card {
-  background:#fff; border-radius:var(--radius);
-  overflow:hidden; cursor:pointer; position:relative;
-  transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s;
-}
-.space-card:hover { transform:translateY(-6px); box-shadow:0 20px 60px rgba(0,0,0,.08); }
-.space-card-img {
-  height:240px; overflow:hidden; position:relative;
-}
-.space-card-img img {
-  width:100%; height:100%; object-fit:cover;
-  transition: transform .6s cubic-bezier(.4,0,.2,1);
-}
-.space-card:hover .space-card-img img { transform:scale(1.06); }
-.space-card-img::after {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(to top, rgba(28,20,16,.4) 0%, transparent 60%);
-}
-.space-card-body { padding:32px 28px 28px; }
-.sc-num { font-size:10px; letter-spacing:2px; color:var(--gold); font-weight:500; margin-bottom:12px; }
-.sc-title { font-family:var(--font-display); font-size:22px; font-weight:500; color:var(--espresso); margin-bottom:10px; }
-.sc-desc { font-size:13px; color:var(--text-body); line-height:1.7; margin-bottom:20px; }
-.sc-link {
-  display:inline-flex; align-items:center; gap:6px;
-  font-size:12px; font-weight:500; color:var(--gold); letter-spacing:.4px;
-  transition: gap .3s;
-}
-.sc-link:hover { gap:10px; }
-
-/* ═══════════════════════════════════════════
-   VISION
-═══════════════════════════════════════════ */
-.vision {
-  background:var(--espresso); position:relative;
-  overflow:hidden; padding:140px 48px;
-}
-.vision-grid-bg {
-  position:absolute; inset:0; opacity:.04;
-  background-image:
-    linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
-  background-size:60px 60px; pointer-events:none;
-}
-.vision-inner {
-  max-width:1140px; margin:0 auto;
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:100px; align-items:center; position:relative; z-index:1;
-}
-.vision-text .sec-label { color:var(--gold); }
-.vision-text .sec-title { color:var(--cream); max-width:440px; }
-.vision-text .sec-desc { color:rgba(240,232,220,.55); }
-
-.vision-timeline { margin-top:48px; display:flex; flex-direction:column; }
-.vt-item {
-  display:flex; gap:20px; align-items:flex-start;
-  padding:18px 0; border-bottom:1px solid rgba(240,232,220,.08);
-}
-.vt-item:last-child { border-bottom:none; }
-.vt-dot {
-  width:10px; height:10px; border-radius:50%;
-  background:var(--gold); flex-shrink:0; margin-top:6px;
-  box-shadow:0 0 12px rgba(184,147,90,.3);
-}
-.vt-dot.future { background:transparent; border:1.5px solid rgba(184,147,90,.35); box-shadow:none; }
-.vt-year { font-size:11px; font-weight:500; letter-spacing:1.5px; color:var(--gold); min-width:42px; margin-top:2px; }
-.vt-year.future { color:rgba(184,147,90,.4); }
-.vt-info h4 { font-family:var(--font-display); font-size:17px; font-weight:500; color:var(--cream); margin-bottom:4px; }
-.vt-info h4.future { color:rgba(240,232,220,.35); }
-.vt-info p { font-size:12px; color:rgba(240,232,220,.4); line-height:1.6; }
-
-.vision-map {
-  position:relative; aspect-ratio:1; max-width:420px; margin:0 auto;
-}
-.vm-frame {
-  position:absolute; inset:0;
-  border:1px solid rgba(184,147,90,.12); border-radius:var(--radius);
-  background:rgba(184,147,90,.02);
-}
-.vm-pin { position:absolute; width:24px; height:24px; transform:translate(-50%,-50%); }
-.vm-pin-ring { width:100%; height:100%; border-radius:50%; border:1.5px solid var(--gold); position:relative; transition:border-color .3s; }
-.vm-pin:hover .vm-pin-ring { border-color:var(--latte); }
-.vm-pin-dot { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:7px; height:7px; border-radius:50%; background:var(--gold); }
-.vm-pin.future .vm-pin-ring { border-color:rgba(184,147,90,.25); border-style:dashed; }
-.vm-pin.future .vm-pin-dot { background:rgba(184,147,90,.3); }
-.vm-pin-pulse { position:absolute; inset:-6px; border-radius:50%; border:1px solid rgba(184,147,90,.2); animation:pinPulse 2.5s ease-out infinite; }
-@keyframes pinPulse { to { transform:scale(2.2); opacity:0; } }
-.vm-label { position:absolute; font-size:10px; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:rgba(240,232,220,.45); white-space:nowrap; }
-
-/* ═══════════════════════════════════════════
-   EXPERIENCE — Photo Grid
-═══════════════════════════════════════════ */
-.experience { background:var(--warm-white); }
-.exp-inner { max-width:1140px; margin:0 auto; }
-.exp-header { text-align:center; margin-bottom:72px; }
-.exp-header .sec-label { justify-content:center; }
-.exp-header .sec-title { max-width:100%; text-align:center; }
-.exp-header .sec-desc { text-align:center; margin:0 auto; }
-
-.exp-photo-grid {
-  display:grid;
-  grid-template-columns: 1.1fr 0.9fr 1fr;
-  grid-template-rows: 260px 260px;
-  gap:16px;
-}
-.exp-photo {
-  position:relative; border-radius:var(--radius);
-  overflow:hidden; cursor:pointer;
-}
-.exp-photo img {
-  width:100%; height:100%; object-fit:cover;
-  transition:transform .6s cubic-bezier(.4,0,.2,1);
-}
-.exp-photo:hover img { transform:scale(1.05); }
-.exp-photo-overlay {
-  position:absolute; inset:0;
-  background:linear-gradient(to top, rgba(28,20,16,.65) 0%, rgba(28,20,16,.1) 50%, transparent 100%);
-  display:flex; flex-direction:column; justify-content:flex-end;
-  padding:28px;
-  transition: background .3s;
-}
-.exp-photo:hover .exp-photo-overlay { background:linear-gradient(to top, rgba(28,20,16,.75) 0%, rgba(28,20,16,.2) 50%, transparent 100%); }
-.exp-photo-label {
-  font-size:10px; letter-spacing:2px; text-transform:uppercase;
-  color:var(--gold); margin-bottom:6px; font-weight:500;
-}
-.exp-photo-title {
-  font-family:var(--font-display); font-size:22px; font-weight:500;
-  color:var(--cream); line-height:1.3;
-}
-.exp-photo-desc {
-  font-size:12px; color:rgba(240,232,220,.55); margin-top:6px;
-  line-height:1.6; max-width:280px;
-  opacity:0; transform:translateY(8px);
-  transition: opacity .4s .1s, transform .4s .1s;
-}
-.exp-photo:hover .exp-photo-desc { opacity:1; transform:translateY(0); }
-
-/* Grid layout — make certain items span */
-.exp-photo.tall { grid-row:span 2; }
-
-/* ═══════════════════════════════════════════
-   CTA / NEWSLETTER
-═══════════════════════════════════════════ */
-.cta-section {
-  background:var(--dark-brown); position:relative; overflow:hidden; padding:100px 48px;
-}
-.cta-blob { position:absolute; border-radius:50%; filter:blur(100px); pointer-events:none; }
-.cta-blob-1 { width:400px; height:400px; background:rgba(184,147,90,.1); top:-40%; right:-10%; }
-.cta-blob-2 { width:300px; height:300px; background:rgba(184,147,90,.06); bottom:-30%; left:-8%; }
-.cta-inner { max-width:640px; margin:0 auto; text-align:center; position:relative; z-index:1; }
-.cta-inner .sec-label { justify-content:center; color:var(--gold); }
-.cta-inner h2 {
-  font-family:var(--font-display); font-size:clamp(30px,4vw,42px);
-  font-weight:400; color:var(--cream); line-height:1.25;
-  margin-bottom:16px; letter-spacing:-.5px;
-}
-.cta-inner p { font-size:14px; color:rgba(240,232,220,.5); line-height:1.8; margin-bottom:36px; }
-.cta-form { display:flex; gap:12px; max-width:440px; margin:0 auto; }
-.cta-form input {
-  flex:1; padding:14px 20px; background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.1); border-radius:var(--radius);
-  color:var(--cream); font-family:var(--font-body); font-size:13px; outline:none;
-  transition:border-color .3s, background .3s;
-}
-.cta-form input::placeholder { color:rgba(240,232,220,.3); }
-.cta-form input:focus { border-color:var(--gold); background:rgba(255,255,255,.1); }
-.cta-form button {
-  padding:14px 28px; background:var(--gold); color:#fff;
-  border:none; border-radius:var(--radius); font-family:var(--font-body);
-  font-size:13px; font-weight:500; cursor:pointer;
-  transition:background .3s; white-space:nowrap;
-}
-.cta-form button:hover { background:#a07e48; }
-
-/* ═══════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════ */
-footer { background:var(--espresso); padding:70px 48px 36px; color:rgba(240,232,220,.35); }
-.footer-inner {
-  max-width:1140px; margin:0 auto;
-  display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:48px;
-}
-.footer-logo img { height:48px; width:auto; margin-bottom:16px; }
-.footer-brand p { font-size:12.5px; line-height:1.8; max-width:260px; }
-.footer-col h4 { font-size:10.5px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
-.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:12px; }
-.footer-col a { font-size:13px; color:rgba(240,232,220,.4); transition:color .3s; }
-.footer-col a:hover { color:var(--cream); }
-.footer-bottom {
-  max-width:1140px; margin:48px auto 0; padding-top:24px;
-  border-top:1px solid rgba(240,232,220,.07);
-  display:flex; justify-content:space-between; align-items:center; font-size:11.5px;
-}
-
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════ */
-@media(max-width:960px){
-  .about { grid-template-columns:1fr; gap:48px; }
-  .about-visual { max-width:440px; }
-  .spaces-grid { grid-template-columns:1fr 1fr; }
-  .vision-inner { grid-template-columns:1fr; gap:56px; }
-  .exp-photo-grid { grid-template-columns:1fr 1fr; grid-template-rows:240px 240px 240px; }
-  .exp-photo.tall { grid-row:span 1; }
-  .footer-inner { grid-template-columns:1fr 1fr; }
-}
-@media(max-width:600px){
-  nav { padding:18px 24px; }
-  nav.scrolled { padding:12px 24px; }
-  .nav-links { gap:18px; }
-  .hero { padding:0 24px 80px; }
-  section { padding:80px 24px; }
-  .about-wrap { padding:80px 24px; }
-  .spaces-grid { grid-template-columns:1fr; }
-  .spaces-header { flex-direction:column; align-items:flex-start; }
-  .exp-photo-grid { grid-template-columns:1fr; grid-template-rows:repeat(4,220px); }
-  .cta-form { flex-direction:column; }
-  .footer-inner { grid-template-columns:1fr; }
-}
-
-/* The Room — through to the 3D space at /room/ */
-.btn-room{color:var(--gold);}
-.btn-room:hover{color:var(--cream);}
-.btn-room svg{transition:transform .3s;}
-.btn-room:hover svg{transform:translate(2px,-2px);}
-@media(max-width:600px){
-  /* A fifth nav item will not fit a phone; the hero button carries it there. */
-  .nav-links li:nth-child(5){display:none;}
-}
-</style>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/main.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
-<nav id="mainNav">
-  <a href="#" class="nav-logo"><img src="images/logo.jpg" alt="Near Coffee Space"></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#spaces">Spaces</a></li>
-    <li><a href="#vision">Our Vision</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="https://room.nearcoffee.space/">The Room</a></li>
-  </ul>
-  <a href="#newsletter" class="nav-cta">Stay Close</a>
-</nav>
+<header class="site-header" id="mainNav">
+  <a href="#" class="logo" aria-label="Near Coffee Space, back to top">
+    <img src="images/logo.jpg" alt="" width="192" height="192">
+    <span>Near Coffee</span>
+  </a>
+  <nav class="nav" id="primaryNav" aria-label="Primary">
+    <a href="#about">About</a>
+    <a href="#spaces">Spaces</a>
+    <a href="#vision">Our Vision</a>
+    <a href="#experience">Experience</a>
+    <a href="https://room.nearcoffee.space/" class="nav-room">The Room <span aria-hidden="true">↗</span></a>
+  </nav>
+  <a href="#newsletter" class="status-pill"><span class="pulse" aria-hidden="true"></span>Stay Close</a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav">
+    <span class="sr-only">Menu</span>
+    <span class="menu-toggle-bars" aria-hidden="true"></span>
+  </button>
+</header>
+
+<main id="main">
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-tag">Welcome to Near Coffee</div>
-    <h1 class="hero-title">A place to<br>gather, <em>breathe</em>,<br>&amp; connect.</h1>
-    <p class="hero-sub">More than a coffee shop — Near Coffee is a collection of thoughtfully designed spaces where people come to work, unwind, and enjoy life one cup at a time.</p>
-    <div class="hero-actions">
-      <a href="#spaces" class="btn-primary">
-        <span>Explore Our Spaces</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="#vision" class="btn-ghost">
-        <span>Our Vision</span>
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="https://room.nearcoffee.space/" class="btn-ghost btn-room">
-        <span>Step Inside</span>
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5 11.5 4.5M11.5 4.5H6M11.5 4.5V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+<section class="hero" id="top">
+  <canvas class="hero-stars" aria-hidden="true"></canvas>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Welcome to Near Coffee</p>
+      <h1 class="hero-title reveal">
+        <span class="line">A place to</span>
+        <span class="line">gather, <em>breathe</em>,</span>
+        <span class="line">&amp; connect.</span>
+      </h1>
+      <p class="hero-lede reveal">More than a coffee shop — Near Coffee is a collection of thoughtfully designed spaces where people come to work, unwind, and enjoy life one cup at a time.</p>
+      <div class="hero-actions reveal">
+        <a href="#spaces" class="btn btn-primary">
+          Explore Our Spaces
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#vision" class="btn btn-ghost">
+          Our Vision
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </a>
+        <a href="https://room.nearcoffee.space/" class="btn btn-ghost btn-room">
+          Step Inside
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="arch media media--ember">
+        <img src="images/hero.jpg" alt="The curved white counter and espresso bar at Near Coffee, lit by warm shelf lights" width="1050" height="1400" fetchpriority="high">
+      </div>
+      <div class="badge" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <defs><path id="badge-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+          <text textLength="486" lengthAdjust="spacing"><textPath href="#badge-circle" textLength="486" lengthAdjust="spacing">near coffee · est. 2024 · growing · </textPath></text>
+        </svg>
+        <span class="badge-core">☕︎</span>
+      </div>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="hero-scroll-line"></div>
-    <span>Scroll</span>
-  </div>
+
+  <a href="#about" class="scroll-cue"><span class="scroll-cue-mouse" aria-hidden="true"><span></span></span>Scroll</a>
 </section>
 
 <!-- MARQUEE -->
-<div class="marquee-strip">
+<div class="marquee">
   <div class="marquee-track">
-    <span><span class="dot"></span> Crafted with care</span>
-    <span><span class="dot"></span> Ethically sourced</span>
-    <span><span class="dot"></span> Spaces to breathe</span>
-    <span><span class="dot"></span> Community first</span>
-    <span><span class="dot"></span> Thoughtfully designed</span>
-    <span><span class="dot"></span> Always welcoming</span>
-    <span><span class="dot"></span> Crafted with care</span>
-    <span><span class="dot"></span> Ethically sourced</span>
-    <span><span class="dot"></span> Spaces to breathe</span>
-    <span><span class="dot"></span> Community first</span>
-    <span><span class="dot"></span> Thoughtfully designed</span>
-    <span><span class="dot"></span> Always welcoming</span>
+    <p class="marquee-group">
+      <span>Crafted with care</span><i aria-hidden="true">✦</i><span>Ethically sourced</span><i aria-hidden="true">✦</i><span>Spaces to breathe</span><i aria-hidden="true">✦</i><span>Community first</span><i aria-hidden="true">✦</i><span>Thoughtfully designed</span><i aria-hidden="true">✦</i><span>Always welcoming</span><i aria-hidden="true">✦</i>
+    </p>
+    <p class="marquee-group" aria-hidden="true">
+      <span>Crafted with care</span><i>✦</i><span>Ethically sourced</span><i>✦</i><span>Spaces to breathe</span><i>✦</i><span>Community first</span><i>✦</i><span>Thoughtfully designed</span><i>✦</i><span>Always welcoming</span><i>✦</i>
+    </p>
   </div>
 </div>
 
 <!-- ABOUT -->
-<div id="about" class="about-wrap">
-  <div class="about reveal">
-    <div class="about-visual">
-      <img src="images/about.jpg" loading="lazy" decoding="async" alt="Near Coffee Interior">
-      <div class="about-tag">Est. <span>2024</span> · Growing</div>
+<section id="about" class="about section-light">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="arch media media--crema">
+        <img src="images/about.jpg" loading="lazy" decoding="async" width="1050" height="1400" alt="A quiet corner of Near Coffee: wooden chairs around a small marble table against a weathered white brick wall">
+      </div>
+      <p class="about-tag">Est. <span>2024</span> · Growing</p>
     </div>
     <div class="about-text">
-      <div class="sec-label">About Us</div>
-      <h2 class="sec-title">Not just coffee —<br>a <em>space</em> for you.</h2>
-      <p class="sec-desc">Near Coffee was born from a simple belief: everyone deserves a place nearby where they can slow down. Whether you're closing a deal, writing your first chapter, or simply watching the world go by — we built this for you.</p>
-      <div class="about-pillars">
-        <div class="pillar">
+      <p class="eyebrow eyebrow-dark reveal">01 — About Us</p>
+      <h2 class="section-title reveal">Not just coffee —<br>a <em>space</em> for you.</h2>
+      <p class="lede reveal">Near Coffee was born from a simple belief: everyone deserves a place nearby where they can slow down. Whether you're closing a deal, writing your first chapter, or simply watching the world go by — we built this for you.</p>
+      <ul class="pillars" role="list">
+        <li class="pillar reveal">
           <span class="pillar-num">01</span>
-          <span class="pillar-name">Comfort</span>
-          <span class="pillar-desc">Spaces designed to feel like a second home.</span>
-        </div>
-        <div class="pillar">
+          <h3>Comfort</h3>
+          <p>Spaces designed to feel like a second home.</p>
+        </li>
+        <li class="pillar reveal">
           <span class="pillar-num">02</span>
-          <span class="pillar-name">Quality</span>
-          <span class="pillar-desc">Carefully sourced, expertly crafted coffee.</span>
-        </div>
-        <div class="pillar">
+          <h3>Quality</h3>
+          <p>Carefully sourced, expertly crafted coffee.</p>
+        </li>
+        <li class="pillar reveal">
           <span class="pillar-num">03</span>
-          <span class="pillar-name">Community</span>
-          <span class="pillar-desc">Where connections happen naturally.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SPACES -->
-<section id="spaces" class="spaces-section">
-  <div class="spaces-inner">
-    <div class="spaces-header reveal">
-      <div>
-        <div class="sec-label">Our Spaces</div>
-        <h2 class="sec-title">Every space,<br>a different <em>feeling</em>.</h2>
-      </div>
-      <p style="max-width:340px; font-size:14px; color:var(--text-body); line-height:1.8; text-align:right;">Each Near Coffee location has its own identity — crafted to match the energy of the neighborhood it lives in.</p>
-    </div>
-    <div class="spaces-grid">
-      <div class="space-card reveal">
-        <div class="space-card-img">
-          <img src="images/space-1.jpg" loading="lazy" decoding="async" alt="The Workshop">
-        </div>
-        <div class="space-card-body">
-          <div class="sc-num">01</div>
-          <h3 class="sc-title">The Workshop</h3>
-          <p class="sc-desc">Bright, open, productive. Designed for deep-focus work and casual brainstorming alike. Grab a read, grab a coffee, and get into the flow.</p>
-          <a href="#" class="sc-link">Learn more <span>→</span></a>
-        </div>
-      </div>
-      <div class="space-card reveal reveal-d1">
-        <div class="space-card-img">
-          <img src="images/space-2.jpg" loading="lazy" decoding="async" alt="The Garden">
-        </div>
-        <div class="space-card-body">
-          <div class="sc-num">02</div>
-          <h3 class="sc-title">The Garden</h3>
-          <p class="sc-desc">Soft light, green textures, and a calm that invites you to stay a little longer. Fresh pastries, good coffee, better company.</p>
-          <a href="#" class="sc-link">Learn more <span>→</span></a>
-        </div>
-      </div>
-      <div class="space-card reveal reveal-d2">
-        <div class="space-card-img">
-          <img src="images/space-3.jpg" loading="lazy" decoding="async" alt="The Lounge">
-        </div>
-        <div class="space-card-body">
-          <div class="sc-num">03</div>
-          <h3 class="sc-title">The Lounge</h3>
-          <p class="sc-desc">Warm evenings, good conversations, and coffee that makes you forget the clock. The kind of place you don't want to leave.</p>
-          <a href="#" class="sc-link">Learn more <span>→</span></a>
-        </div>
-      </div>
+          <h3>Community</h3>
+          <p>Where connections happen naturally.</p>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- VISION -->
-<section id="vision" class="vision">
-  <div class="vision-grid-bg"></div>
-  <div class="vision-inner">
-    <div class="vision-text reveal">
-      <div class="sec-label">Our Vision</div>
-      <h2 class="sec-title">Building a <em>network</em> of spaces people love.</h2>
-      <p class="sec-desc">Near Coffee is more than one location — it's a growing family of unique cafes, each with its own personality, united by one shared philosophy: great coffee in a space that feels like it was built just for you.</p>
-      <div class="vision-timeline">
-        <div class="vt-item">
-          <div class="vt-dot"></div>
-          <div class="vt-year">2024</div>
-          <div class="vt-info"><h4>The First Space</h4><p>Our flagship location opens — the blueprint begins.</p></div>
-        </div>
-        <div class="vt-item">
-          <div class="vt-dot"></div>
-          <div class="vt-year">2025</div>
-          <div class="vt-info"><h4>Refining the Craft</h4><p>Perfecting the experience, listening, and growing the community.</p></div>
-        </div>
-        <div class="vt-item">
-          <div class="vt-dot future"></div>
-          <div class="vt-year future">2026</div>
-          <div class="vt-info"><h4 class="future">Location No. 2</h4><p>A new theme, a new neighborhood, the same warmth.</p></div>
-        </div>
-        <div class="vt-item">
-          <div class="vt-dot future"></div>
-          <div class="vt-year future">2027+</div>
-          <div class="vt-info"><h4 class="future">The Network Grows</h4><p>Multiple locations, each uniquely designed, all connected.</p></div>
-        </div>
-      </div>
+<!-- SPACES -->
+<section id="spaces" class="spaces section-crema">
+  <div class="spaces-head">
+    <div>
+      <p class="eyebrow eyebrow-dark reveal">02 — Our Spaces</p>
+      <h2 class="section-title reveal">Every space,<br>a different <em>feeling</em>.</h2>
     </div>
-    <div class="vision-map reveal reveal-d1">
-      <div class="vm-frame"></div>
-      <div class="vm-pin" style="top:42%;left:38%;"><div class="vm-pin-pulse"></div><div class="vm-pin-ring"></div><div class="vm-pin-dot"></div></div>
-      <div class="vm-label" style="top:38%;left:46%;">Flagship</div>
-      <div class="vm-pin future" style="top:28%;left:64%;"><div class="vm-pin-ring"></div><div class="vm-pin-dot"></div></div>
-      <div class="vm-label" style="top:24%;left:72%;">Coming Soon</div>
-      <div class="vm-pin future" style="top:60%;left:58%;"><div class="vm-pin-ring"></div><div class="vm-pin-dot"></div></div>
-      <div class="vm-label" style="top:66%;left:66%;">Future</div>
-      <div class="vm-pin future" style="top:55%;left:26%;"><div class="vm-pin-ring"></div><div class="vm-pin-dot"></div></div>
-      <div class="vm-label" style="top:61%;left:14%;">Future</div>
-      <div class="vm-pin future" style="top:72%;left:42%;"><div class="vm-pin-ring"></div><div class="vm-pin-dot"></div></div>
-      <div class="vm-label" style="top:78%;left:50%;">Future</div>
+    <p class="spaces-intro reveal">Each Near Coffee location has its own identity — crafted to match the energy of the neighborhood it lives in.</p>
+  </div>
+  <div class="spaces-grid">
+    <article class="space-card reveal">
+      <div class="space-media arch media media--clay">
+        <img src="images/space-1.jpg" loading="lazy" decoding="async" width="1050" height="1400" alt="The Workshop: postcards, a newspaper and a handbag spread across a pale green table">
+      </div>
+      <span class="space-num">01</span>
+      <h3>The Workshop</h3>
+      <p>Bright, open, productive. Designed for deep-focus work and casual brainstorming alike. Grab a read, grab a coffee, and get into the flow.</p>
+      <a href="#" class="space-link">Learn more <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="space-card reveal">
+      <div class="space-media arch media media--sage">
+        <img src="images/space-2.jpg" loading="lazy" decoding="async" width="1050" height="1400" alt="The Garden: pastries, a sprig of rosemary in a carafe and glasses of water on a round wooden table">
+      </div>
+      <span class="space-num">02</span>
+      <h3>The Garden</h3>
+      <p>Soft light, green textures, and a calm that invites you to stay a little longer. Fresh pastries, good coffee, better company.</p>
+      <a href="#" class="space-link">Learn more <span aria-hidden="true">→</span></a>
+    </article>
+    <article class="space-card reveal">
+      <div class="space-media arch media media--night">
+        <img src="images/space-3.jpg" loading="lazy" decoding="async" width="1050" height="1400" alt="The Lounge: a latte and a glass of water on a dark table in low evening light">
+      </div>
+      <span class="space-num">03</span>
+      <h3>The Lounge</h3>
+      <p>Warm evenings, good conversations, and coffee that makes you forget the clock. The kind of place you don't want to leave.</p>
+      <a href="#" class="space-link">Learn more <span aria-hidden="true">→</span></a>
+    </article>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision" class="vision section-dark">
+  <div class="vision-head">
+    <p class="eyebrow reveal">03 — Our Vision</p>
+    <h2 class="section-title reveal">Building a <em>network</em> of spaces people love.</h2>
+    <p class="manifesto-text reveal">Near Coffee is more than one location — it's a <em>growing family</em> of unique cafes, each with its own personality, united by one shared philosophy: <em>great coffee</em> in a space that feels like it was built <em>just for you</em>.</p>
+  </div>
+
+  <div class="vision-grid">
+    <ol class="timeline reveal" role="list">
+      <li>
+        <span class="tl-year">2024</span>
+        <span class="tl-title">The First Space</span><b aria-hidden="true"></b>
+        <small>Our flagship location opens — the blueprint begins.</small>
+      </li>
+      <li>
+        <span class="tl-year">2025</span>
+        <span class="tl-title">Refining the Craft</span><b aria-hidden="true"></b>
+        <small>Perfecting the experience, listening, and growing the community.</small>
+      </li>
+      <li class="is-future">
+        <span class="tl-year">2026</span>
+        <span class="tl-title">Location No. 2</span><b aria-hidden="true"></b>
+        <small>A new theme, a new neighborhood, the same warmth.</small>
+      </li>
+      <li class="is-future">
+        <span class="tl-year">2027+</span>
+        <span class="tl-title">The Network Grows</span><b aria-hidden="true"></b>
+        <small>Multiple locations, each uniquely designed, all connected.</small>
+      </li>
+    </ol>
+
+    <div class="orbit-map reveal" role="img" aria-label="A map of the network: the flagship, one space coming soon, and three future spaces.">
+      <span class="om-ring om-ring-1"></span>
+      <span class="om-ring om-ring-2"></span>
+      <span class="om-ring om-ring-3"></span>
+      <div class="om-pin is-live" style="top:42%;left:38%;"><span class="om-pulse"></span></div>
+      <div class="om-label is-live" style="top:38%;left:46%;">Flagship</div>
+      <div class="om-pin" style="top:28%;left:64%;"></div>
+      <div class="om-label" style="top:24%;left:70%;">Coming Soon</div>
+      <div class="om-pin" style="top:60%;left:58%;"></div>
+      <div class="om-label" style="top:66%;left:64%;">Future</div>
+      <div class="om-pin" style="top:55%;left:26%;"></div>
+      <div class="om-label" style="top:61%;left:12%;">Future</div>
+      <div class="om-pin" style="top:72%;left:42%;"></div>
+      <div class="om-label" style="top:78%;left:48%;">Future</div>
     </div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience" class="experience">
-  <div class="exp-inner">
-    <div class="exp-header reveal">
-      <div class="sec-label">The Experience</div>
-      <h2 class="sec-title" style="max-width:100%;text-align:center;">Why people keep<br>coming <em>back</em>.</h2>
-      <p class="sec-desc">It's never just about the coffee. It's how a space makes you feel the moment you walk in.</p>
-    </div>
-    <div class="exp-photo-grid">
-      <div class="exp-photo tall reveal">
-        <img src="images/experience-1.jpg" loading="lazy" decoding="async" alt="Community">
-        <div class="exp-photo-overlay">
-          <span class="exp-photo-label">Community</span>
-          <h3 class="exp-photo-title">Where people<br>come together</h3>
-          <p class="exp-photo-desc">A place where regulars become friends and strangers become neighbors over a shared table.</p>
-        </div>
-      </div>
-      <div class="exp-photo reveal reveal-d1">
-        <img src="images/experience-2.jpg" loading="lazy" decoding="async" alt="The Coffee">
-        <div class="exp-photo-overlay">
-          <span class="exp-photo-label">The Coffee</span>
-          <h3 class="exp-photo-title">Crafted with care</h3>
-          <p class="exp-photo-desc">Ethically sourced beans, roasted in small batches. Every cup is a quiet moment of perfection.</p>
-        </div>
-      </div>
-      <div class="exp-photo reveal reveal-d2">
-        <img src="images/experience-3.jpg" loading="lazy" decoding="async" alt="The Atmosphere">
-        <div class="exp-photo-overlay">
-          <span class="exp-photo-label">Atmosphere</span>
-          <h3 class="exp-photo-title">Spaces with soul</h3>
-          <p class="exp-photo-desc">Warm light, thoughtful details, and a calm energy that makes you forget you're in a café.</p>
-        </div>
-      </div>
-      <div class="exp-photo reveal reveal-d1">
-        <img src="images/experience-4.jpg" loading="lazy" decoding="async" alt="People">
-        <div class="exp-photo-overlay">
-          <span class="exp-photo-label">Connection</span>
-          <h3 class="exp-photo-title">Shared moments</h3>
-          <p class="exp-photo-desc">The best conversations happen over coffee. We just make sure the setting is right.</p>
-        </div>
-      </div>
-      <div class="exp-photo reveal reveal-d2">
-        <img src="images/experience-5.jpg" loading="lazy" decoding="async" alt="Classic">
-        <div class="exp-photo-overlay">
-          <span class="exp-photo-label">Heritage</span>
-          <h3 class="exp-photo-title">Timeless charm</h3>
-          <p class="exp-photo-desc">Every detail is chosen to create a space that feels both familiar and special.</p>
-        </div>
-      </div>
-    </div>
+<section id="experience" class="experience section-light">
+  <div class="exp-head">
+    <p class="eyebrow eyebrow-dark reveal">04 — The Experience</p>
+    <h2 class="section-title reveal">Why people keep<br>coming <em>back</em>.</h2>
+    <p class="lede reveal">It's never just about the coffee. It's how a space makes you feel the moment you walk in.</p>
+  </div>
+  <div class="bento">
+    <figure class="tile tile-1 media media--ember reveal">
+      <img src="images/experience-1.jpg" loading="lazy" decoding="async" width="1050" height="1400" alt="People sharing tables on a sidewalk terrace at dusk under string lights and umbrellas">
+      <figcaption>
+        <span class="pill">Community</span>
+        <h3>Where people<br>come together</h3>
+        <p>A place where regulars become friends and strangers become neighbors over a shared table.</p>
+      </figcaption>
+    </figure>
+    <figure class="tile tile-2 media media--crema reveal">
+      <img src="images/experience-2.jpg" loading="lazy" decoding="async" width="1050" height="1400" alt="A cup of latte art beside a glass of water on a dark wooden tray">
+      <figcaption>
+        <span class="pill">The Coffee</span>
+        <h3>Crafted with care</h3>
+        <p>Ethically sourced beans, roasted in small batches. Every cup is a quiet moment of perfection.</p>
+      </figcaption>
+    </figure>
+    <figure class="tile tile-3 media media--sage reveal">
+      <img src="images/experience-3.jpg" loading="lazy" decoding="async" width="1050" height="1400" alt="A cortado on a round white table in front of a velvet sofa and a gilt-framed portrait">
+      <figcaption>
+        <span class="pill">Atmosphere</span>
+        <h3>Spaces with soul</h3>
+        <p>Warm light, thoughtful details, and a calm energy that makes you forget you're in a café.</p>
+      </figcaption>
+    </figure>
+    <figure class="tile tile-4 media media--clay reveal">
+      <img src="images/experience-4.jpg" loading="lazy" decoding="async" width="1050" height="1400" alt="Hands resting beside a cappuccino and a glass of water on a wooden serving board">
+      <figcaption>
+        <span class="pill">Connection</span>
+        <h3>Shared moments</h3>
+        <p>The best conversations happen over coffee. We just make sure the setting is right.</p>
+      </figcaption>
+    </figure>
+    <figure class="tile tile-5 media media--night reveal">
+      <img src="images/experience-5.jpg" loading="lazy" decoding="async" width="1050" height="1400" alt="A wood-panelled room with a carved bench, an antique clock and a tea set on a small round table">
+      <figcaption>
+        <span class="pill">Heritage</span>
+        <h3>Timeless charm</h3>
+        <p>Every detail is chosen to create a space that feels both familiar and special.</p>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- CTA -->
-<section id="newsletter" class="cta-section">
-  <div class="cta-blob cta-blob-1"></div>
-  <div class="cta-blob cta-blob-2"></div>
-  <div class="cta-inner reveal">
-    <div class="sec-label">Stay in the Loop</div>
-    <h2>Be the first to know when<br>a new space opens near you.</h2>
-    <p>Join our community. Get updates on new locations, events, and the little things that make Near Coffee special.</p>
-    <div class="cta-form">
-      <input type="email" placeholder="Your email address">
-      <button type="button">Subscribe</button>
-    </div>
+<section id="newsletter" class="cta section-dark">
+  <div class="cta-orbit" aria-hidden="true">
+    <span class="ring ring-1"></span>
+    <span class="ring ring-2"></span>
+    <span class="ring ring-3"></span>
+    <span class="planet"></span>
+  </div>
+  <p class="eyebrow reveal">05 — Stay in the Loop</p>
+  <h2 class="cta-title reveal">Be the first to know when a new space opens <em class="nowrap">near you.</em></h2>
+  <p class="muted reveal">Join our community. Get updates on new locations, events, and the little things that make Near Coffee special.</p>
+  <div class="cta-form reveal">
+    <label class="sr-only" for="newsletter-email">Email address</label>
+    <input type="email" id="newsletter-email" placeholder="Your email address" autocomplete="email">
+    <button type="button" class="btn btn-primary">Subscribe</button>
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
-<footer>
+<footer class="site-footer">
+  <p class="footer-mark" aria-hidden="true">near coffee<span class="logo-dot">.</span>space</p>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-logo"><img src="images/logo.jpg" loading="lazy" decoding="async" alt="Near Coffee Space"></div>
+      <img src="images/logo.jpg" loading="lazy" decoding="async" width="192" height="192" alt="Near Coffee Space">
       <p>A growing collection of thoughtfully designed coffee spaces — built for the people, shaped by the neighborhood.</p>
     </div>
     <div class="footer-col">
-      <h4>Explore</h4>
+      <h2>Explore</h2>
       <ul><li><a href="#about">About</a></li><li><a href="#spaces">Our Spaces</a></li><li><a href="#vision">Vision</a></li><li><a href="#experience">Experience</a></li><li><a href="https://room.nearcoffee.space/">The Room</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4>Visit</h4>
-      <ul><li><a href="#">Locations</a></li><li><a href="#">Hours & Info</a></li><li><a href="#">Events</a></li><li><a href="#">Menu</a></li></ul>
+      <h2>Visit</h2>
+      <ul><li><a href="#">Locations</a></li><li><a href="#">Hours &amp; Info</a></li><li><a href="#">Events</a></li><li><a href="#">Menu</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4>Connect</h4>
+      <h2>Connect</h2>
       <ul><li><a href="#">Instagram</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
     </div>
   </div>
@@ -810,25 +335,10 @@ footer { background:var(--espresso); padding:70px 48px 36px; color:rgba(240,232,
   </div>
 </footer>
 
-<!-- JS -->
-<script>
-(function(){
-  const nav = document.getElementById('mainNav');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
-
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
-
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
-      if(t){ e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
-    });
-  });
-})();
-</script>
+<!-- Film grain overlay -->
+<svg class="grain" aria-hidden="true">
+  <filter id="grain-filter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter>
+  <rect width="100%" height="100%" filter="url(#grain-filter)"/>
+</svg>
 </body>
 </html>
